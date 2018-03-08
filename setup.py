@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import sys
 from distutils.util import convert_path
@@ -63,9 +64,9 @@ def find_package_data(
                         or fn.lower() == pattern.lower()):
                         bad_name = True
                         if show_ignored:
-                            print >> sys.stderr, (
-                                "Directory %s ignored by pattern %s"
-                                % (fn, pattern))
+                            msg = "Directory %s ignored by pattern %s" % (
+                                fn, pattern)
+                            print(msg, file=sys.stderr)
                         break
                 if bad_name:
                     continue
@@ -86,9 +87,9 @@ def find_package_data(
                         or fn.lower() == pattern.lower()):
                         bad_name = True
                         if show_ignored:
-                            print >> sys.stderr, (
-                                "File %s ignored by pattern %s"
-                                % (fn, pattern))
+                            msg = "File %s ignored by pattern %s" % (
+                                fn, pattern)
+                            sys.stderr.write(msg, file=sys.stderr)
                         break
                 if bad_name:
                     continue
@@ -108,7 +109,7 @@ your Django applications.
 setup(
     name='django-pinpayments',
     version=version,
-    description="Tools for easily adding pin.net.au payment processing to your Django proejct",
+    description="Tools for easily adding pin.net.au payment processing to your Django project",
     long_description=LONG_DESCRIPTION,
     classifiers=[
         "Programming Language :: Python",
