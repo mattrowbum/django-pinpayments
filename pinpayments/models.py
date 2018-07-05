@@ -226,13 +226,13 @@ class CustomerTokenAbstract(models.Model):
         self.save()
 
     def add_card_token(self, card_token):
-        return self._default_manager.add_card_token_to_customer(self, card_token)
+        return self._meta.default_manager.add_card_token_to_customer(self, card_token)
 
     def delete_card(self, card):
-        return self._default_manager.delete_card_from_customer(self, card)
+        return self._meta.default_manager.delete_card_from_customer(self, card)
 
     def set_primary_card(self, card):
-        return self._default_manager.set_primary_card_for_customer(self, card)
+        return self._meta.default_manager.set_primary_card_for_customer(self, card)
 
     @classmethod
     def create_from_card_token(cls, card_token, user, environment=''):
