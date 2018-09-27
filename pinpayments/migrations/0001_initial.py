@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(help_text='Optional. The name by which the recipient is referenced', max_length=100, null=True, blank=True)),
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='Time created')),
                 ('environment', models.CharField(help_text='The name of the Pin environment to use, eg test or live.', max_length=25, db_index=True, blank=True)),
-                ('bank_account', models.ForeignKey(blank=True, to='pinpayments.BankAccount', null=True, , on_delete=django.db.models.deletion.PROTECT)),
+                ('bank_account', models.ForeignKey(blank=True, to='pinpayments.BankAccount', null=True, on_delete=django.db.models.deletion.PROTECT)),
             ],
             options={
             },
