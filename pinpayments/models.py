@@ -312,7 +312,8 @@ class PinTransaction(models.Model):
         )
     )
     customer_token = models.ForeignKey(
-        CustomerToken, blank=True, null=True,
+        CustomerToken, on_delete=models.PROTECT, 
+        blank=True, null=True,
         help_text=_('Provided by Customer API')
     )
     pin_response = models.CharField(
@@ -495,7 +496,8 @@ class PinRecipient(models.Model):
     )
     created = models.DateTimeField(_("Time created"), auto_now_add=True)
     bank_account = models.ForeignKey(
-        BankAccount, blank=True, null=True
+        BankAccount, on_delete=models.PROTECT, 
+        blank=True, null=True
     )
     environment = models.CharField(
         max_length=25, db_index=True, blank=True,
@@ -560,7 +562,10 @@ class PinTransfer(models.Model):
         "Transfer amount, in the base unit of the "
         "currency (e.g.: cents for AUD, yen for JPY)"
     ))
-    recipient = models.ForeignKey(PinRecipient, blank=True, null=True)
+    recipient = models.ForeignKey(
+        PinRecipient, on_delete=models.PROTECT, 
+        blank=True, null=True
+    )
     created = models.DateTimeField(auto_now_add=True)
     pin_response_text = models.TextField(
         _('Complete API Response'), blank=True, null=True,
