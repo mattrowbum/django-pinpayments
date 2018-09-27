@@ -255,7 +255,7 @@ class CustomerToken(CustomerTokenAbstract):
     This model is typically used for recurring billing and managing multiple
     credit cards attached to a User's account
     """
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
 
 
 @python_2_unicode_compatible
