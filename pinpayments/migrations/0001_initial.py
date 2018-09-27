@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                 ('card_type', models.CharField(choices=[('master', 'Mastercard'), ('visa', 'Visa')], max_length=20, blank=True, help_text='Determined automatically by Pin', null=True, verbose_name='Card Type')),
                 ('card_number', models.CharField(help_text='Cleansed by Pin API', max_length=100, null=True, verbose_name='Card Number', blank=True)),
                 ('card_name', models.CharField(max_length=100, null=True, verbose_name='Name on Card', blank=True)),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=django.db.models.deletion.PROTECT)),
             ],
             options={
             },
@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(help_text='Optional. The name by which the recipient is referenced', max_length=100, null=True, blank=True)),
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='Time created')),
                 ('environment', models.CharField(help_text='The name of the Pin environment to use, eg test or live.', max_length=25, db_index=True, blank=True)),
-                ('bank_account', models.ForeignKey(blank=True, to='pinpayments.BankAccount', null=True)),
+                ('bank_account', models.ForeignKey(blank=True, to='pinpayments.BankAccount', null=True, , on_delete=django.db.models.deletion.PROTECT)),
             ],
             options={
             },
@@ -87,7 +87,7 @@ class Migration(migrations.Migration):
                 ('card_number', models.CharField(help_text='Cleansed by Pin API', max_length=100, null=True, verbose_name='Card Number', blank=True)),
                 ('card_type', models.CharField(choices=[('master', 'Mastercard'), ('visa', 'Visa')], max_length=20, blank=True, help_text='Determined automatically by Pin', null=True, verbose_name='Card Type')),
                 ('pin_response_text', models.TextField(help_text='The full JSON response from the Pin API', null=True, verbose_name='Complete API Response', blank=True)),
-                ('customer_token', models.ForeignKey(blank=True, to='pinpayments.CustomerToken', help_text='Provided by Customer API', null=True)),
+                ('customer_token', models.ForeignKey(blank=True, to='pinpayments.CustomerToken', help_text='Provided by Customer API', null=True, on_delete=django.db.models.deletion.PROTECT)),
             ],
             options={
                 'ordering': ['-date'],
@@ -107,7 +107,7 @@ class Migration(migrations.Migration):
                 ('amount', models.IntegerField(help_text='Transfer amount, in the base unit of the currency (e.g.: cents for AUD, yen for JPY)')),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('pin_response_text', models.TextField(help_text='The full JSON response from the Pin API', null=True, verbose_name='Complete API Response', blank=True)),
-                ('recipient', models.ForeignKey(blank=True, to='pinpayments.PinRecipient', null=True)),
+                ('recipient', models.ForeignKey(blank=True, to='pinpayments.PinRecipient', null=True, on_delete=django.db.models.deletion.PROTECT)),
             ],
             options={
             },
