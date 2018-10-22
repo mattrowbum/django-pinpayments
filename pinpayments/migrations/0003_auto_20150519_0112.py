@@ -28,5 +28,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(migrate_customer_card_data_to_cardtokens),
+        migrations.RunPython(migrate_customer_card_data_to_cardtokens, migrations.RunPython.noop),
     ]
